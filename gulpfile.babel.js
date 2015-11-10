@@ -45,13 +45,16 @@ gulp.task('browserSync', () => {
 });
 
 gulp.task('watchify', () => {
-  let bundler = watchify(browserify(paths.srcJsx, watchify.args));
+  let bundler = watchify(browserify( {entries: paths.srcJsx, debug:true} ));
 
   function rebundle() {
     return bundler
       .bundle()
       .on('error', notify.onError())
       .pipe(source(paths.bundle))
+      .pipe(buffer())
+      .pipe(sourcemaps.init({loadMaps: true}))
+      .pipe(sourcemaps.write('.'))
       .pipe(gulp.dest(paths.distJs))
       .pipe(reload({stream: true}));
   }
