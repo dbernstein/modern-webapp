@@ -9,7 +9,7 @@ export default React.createClass({
     return (
       <div>
         <h2>Powered by</h2>
-        <a href="https://www.duraspace.org"><img src="http://www.duraspace.org/sites/duraspace.org/files/logo_horiz_100%20%281%29.png"/></a>
+        <a href='https://reactjs.org'><img src='dist/images/reactjs.png'/></a>
       </div>
     );
   }

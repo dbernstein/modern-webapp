@@ -10,13 +10,14 @@ export default React.createClass({
   },
   render() {
     const version = packageJSON.version;
-    console.log("AWS.SQS=" + new AWS.SQS());
+    console.log('AWS.SQS=' + new AWS.SQS());
     return (
       <div>
         <header>
           <h1>Modern Webapp {version}</h1>
           <Link to="/about">About</Link>
           <Link to="/poweredby">Powered by</Link>
+          <Link to="/signin">Sign In</Link>
         </header>
         <section>
           {this.props.children || 'Welcome to Modern Webapp'}
