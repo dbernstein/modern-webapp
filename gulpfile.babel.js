@@ -62,12 +62,13 @@ gulp.task('watchify', () => {
 });
 
 gulp.task('browserify', () => {
-  browserify(paths.srcJsx)
+  browserify({entries: paths.srcJsx, 
+              debug: true})
   .transform(babelify)
   .bundle()
   .pipe(source(paths.bundle))
   .pipe(buffer())
-  .pipe(sourcemaps.init())
+  .pipe(sourcemaps.init({loadMaps: true}))
   .pipe(uglify())
   .pipe(sourcemaps.write('.'))
   .pipe(gulp.dest(paths.distJs));
@@ -106,7 +107,7 @@ gulp.task('watchTask', () => {
 });
 
 gulp.task('watch', cb => {
-  runSequence('clean', ['browserSync', 'watchTask', 'watchify', 'styles', 'lint', 'images'], cb);
+  runSequence('clean',  ['browserSync', 'watchTask', 'watchify', 'styles', 'lint', 'images'], cb);
 });
 
 gulp.task('build', cb => {
